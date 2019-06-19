@@ -6,7 +6,6 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -148,29 +147,24 @@ public class Gerenciador {
     }
 
     // Questao 03
-    public ArrayList<GeoPosition> mapaTipoAcidentesPorRua(LocalDateTime inicio, LocalDateTime fim, Tipo_acidente tipo) {
+    public ArrayList<GeoPosition> listaAcidentesPorRuaTipo(LocalDateTime inicio, LocalDateTime fim, Tipo_acidente tipo) {
         ArrayList<GeoPosition> acidentes = new ArrayList<>();
-        
-        
+
         
         return acidentes;
     }
-    
-    // Questao 04
-    public ArrayList<Acidente> acidentesPorLocalizacao(GeoPosition geo, long distancia){
+
+// Questao 04
+    public ArrayList<Acidente> acidentesPorLocalizacao(GeoPosition geo, long distancia) {
         ArrayList<Acidente> acidentes = new ArrayList<>();
-        
-        
-        
+
         return acidentes;
     }
-    
+
     // Questao 05
-    public LocalDateTime dataComMaisAcidentes(){
+    public LocalDateTime dataComMaisAcidentes() {
         LocalDateTime dataMaior = null;
-        
-        
-        
+
         return dataMaior;
     }
 

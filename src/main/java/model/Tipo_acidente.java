@@ -1,5 +1,0 @@
-package model;
-
-public enum Tipo_acidente {
-    ABALROAMENTO, ATROPELAMENTO, CAPOTAGEM, CHOQUE, COLISAO, EVENTUAL, INCENDIO, QUEDA, TOMBAMENTO;
-}

@@ -16,8 +16,6 @@ import javafx.embed.swing.SwingNode;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -192,12 +190,7 @@ public class JanelaConsultaFx extends Application {
     }
 
     public void consultasRestantes() {
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setTitle("CONSULTAS RESTANTES");
-        //alert.setHeaderText("CONSULTAS RESTANTES");
-        alert.setContentText("Dia da semana com mais acidentes: " + ger.diaSemanaComMaisAcidentes() + "\n\n" + "Momento do dia que houveram mais acidentes: " + ger.maiorOcorrenciadiaNoite() + "\n\n" + "Tempo que apresenteu mais acidentes: " + ger.maiorOcorrenciaTempo());
-
-        alert.showAndWait();
+        
     }
 
     private class EventosMouse extends MouseAdapter {
