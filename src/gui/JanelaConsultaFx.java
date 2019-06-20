@@ -121,9 +121,9 @@ public class JanelaConsultaFx extends Application {
         System.out.println("Consulta 1 - Acidentes encontrados: " + geos.size());
 
         gerenciador.clear();
-        for (GeoPosition geo : geos) {
+        geos.forEach((geo) -> {
             lstPoints.add(new MyWaypoint(Color.RED, "", geo, 5));
-        }
+        });
         gerenciador.setPontos(lstPoints);
         gerenciador.getMapKit().repaint();
     }
@@ -135,9 +135,9 @@ public class JanelaConsultaFx extends Application {
         System.out.println("Consulta 2 - Acidentes encontrados: " + geos.size());
 
         gerenciador.clear();
-        for (GeoPosition geo : geos) {
+        geos.forEach((geo) -> {
             lstPoints.add(new MyWaypoint(Color.BLACK, "", geo, 5));
-        }
+        });
         gerenciador.setPontos(lstPoints);
         gerenciador.getMapKit().repaint();
     }
@@ -152,9 +152,9 @@ public class JanelaConsultaFx extends Application {
         System.out.println("Consulta 3 - Acidentes encontrados: " + geos.size());
 
         gerenciador.clear();
-        for (GeoPosition geo : geos) {
+        geos.forEach((geo) -> {
             lstPoints.add(new MyWaypoint(Color.GREEN, "", geo, 5));
-        }
+        });
         gerenciador.setPontos(lstPoints);
         gerenciador.getMapKit().repaint();
     }
