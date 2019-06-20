@@ -20,6 +20,7 @@ public class Acidente {
         this.data = data;
         this.log1 = log1;
         this.log2 = log2;
+        this.tipo = tipo;
         this.dia_sem = dia_sem;
         this.dia_noite = dia_noite;
         this.tempo = tempo;
