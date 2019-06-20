@@ -184,12 +184,6 @@ public class JanelaConsultaFx extends Application {
         }
     }
 
-    private void createSwingContent(final SwingNode swingNode) {
-        SwingUtilities.invokeLater(() -> {
-            swingNode.setContent(gerenciador.getMapKit());
-        });
-    }
-
     public static void main(String[] args) {
         launch(args);
     }
