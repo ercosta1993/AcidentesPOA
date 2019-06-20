@@ -3,7 +3,10 @@ package gui;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.SwingUtilities;
@@ -23,6 +26,7 @@ import javafx.stage.Stage;
 import modelo.Dia_semana;
 
 import modelo.Gerenciador;
+import modelo.Tipo_acidente;
 
 public class JanelaConsultaFx extends Application {
 
@@ -97,7 +101,7 @@ public class JanelaConsultaFx extends Application {
         pane.setCenter(mapkit);
         pane.setTop(leftPane);
 
-        Scene scene = new Scene(pane, 1500, 1000);
+        Scene scene = new Scene(pane, 1700, 820);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Mapas com JavaFX");
         primaryStage.show();
@@ -111,51 +115,6 @@ public class JanelaConsultaFx extends Application {
     }
 
     private void consulta1() {
-
-        // Lista para armazenar o resultado da consulta
-        /*
-        List<MyWaypoint> lstPoints = new ArrayList<>();
-
-        GeoPosition pucrs = new GeoPosition(-30.058642, -51.182809);
-        GeoPosition brio = new GeoPosition(-30.065616, -51.233587);
-        GeoPosition mquin = new GeoPosition(-30.031408, -51.234098);
-        GeoPosition arena = new GeoPosition(-29.975119, -51.195651);
-
-        GeoPosition p1630 = new GeoPosition(-30.0375, -51.2192);
-
-        gerenciador.clear();
-        Tracado tr = new Tracado();
-        tr.setLabel("PUC-BRIO");
-        tr.setWidth(7);
-        tr.setCor(Color.RED);
-        tr.addPonto(pucrs);
-        tr.addPonto(brio);
-
-        gerenciador.addTracado(tr);
-
-        Tracado tr2 = new Tracado();
-        tr2.setWidth(3);
-        tr2.setCor(Color.BLUE);
-        tr2.addPonto(mquin);
-        tr2.addPonto(arena);
-        gerenciador.addTracado(tr2);
-
-        // Adiciona os locais (sem repetir) na lista de waypoints
-        lstPoints.add(new MyWaypoint(Color.RED, "PUCRS", pucrs, 10));
-        lstPoints.add(new MyWaypoint(Color.RED, "Beira-Rio", brio, 10));
-        lstPoints.add(new MyWaypoint(Color.BLUE, "CC MQuintana", mquin, 5));
-        lstPoints.add(new MyWaypoint(Color.BLUE, "Arena", arena, 5));
-        lstPoints.add(new MyWaypoint(Color.BLACK, "P1630", p1630, 25));
-
-        // Para obter um ponto clicado no mapa, usar como segue:
-        // GeoPosition pos = gerenciador.getPosicao();
-        // Informa o resultado para o gerenciador
-        gerenciador.setPontos(lstPoints);
-
-        // Quando for o caso de limpar os traçados...
-        // gerenciador.clear();
-        gerenciador.getMapKit().repaint();
-         */
         List<GeoPosition> geos = ger.colecaoAcidentesPorHora(ger.horaDoDiaComMaisAcidentes());
         List<MyWaypoint> lstPoints = new ArrayList<>();
 
@@ -170,7 +129,7 @@ public class JanelaConsultaFx extends Application {
     }
 
     private void consulta2() {
-        List<GeoPosition> geos = ger.colacaoAcidentesPorLogDiaSem("SERTORIO", Dia_semana.SEXTA);
+        List<GeoPosition> geos = ger.colecaoAcidentesPorLogDiaSem("SERTORIO", Dia_semana.SEXTA);
         List<MyWaypoint> lstPoints = new ArrayList<>();
 
         System.out.println("Consulta 2 - Acidentes encontrados: " + geos.size());
@@ -184,6 +143,20 @@ public class JanelaConsultaFx extends Application {
     }
 
     private void consulta3() {
+        LocalDateTime dataInicial = LocalDateTime.of(2010, Month.MARCH, 5, 0, 0);
+        LocalDateTime dataFinal = LocalDateTime.of(2010, Month.MARCH, 20, 0, 0);
+        List<Tipo_acidente> tipos = Arrays.asList(Tipo_acidente.ABALROAMENTO, Tipo_acidente.CAPOTAGEM, Tipo_acidente.COLISAO);
+        List<GeoPosition> geos = ger.colecaoAcidentesPorDataTipoAcidente(dataInicial, dataFinal, tipos);
+        List<MyWaypoint> lstPoints = new ArrayList<>();
+
+        System.out.println("Consulta 3 - Acidentes encontrados: " + geos.size());
+
+        gerenciador.clear();
+        for (GeoPosition geo : geos) {
+            lstPoints.add(new MyWaypoint(Color.GREEN, "", geo, 5));
+        }
+        gerenciador.setPontos(lstPoints);
+        gerenciador.getMapKit().repaint();
     }
 
     private void consulta4() {
