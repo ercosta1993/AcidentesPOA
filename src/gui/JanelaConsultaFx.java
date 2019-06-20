@@ -8,12 +8,8 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import javax.swing.SwingUtilities;
-
 import org.jxmapviewer.JXMapViewer;
 import org.jxmapviewer.viewer.GeoPosition;
-
 import javafx.application.Application;
 import javafx.embed.swing.SwingNode;
 import javafx.geometry.Insets;
@@ -24,7 +20,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import modelo.Dia_semana;
-
 import modelo.Gerenciador;
 import modelo.Tipo_acidente;
 
@@ -54,8 +49,6 @@ public class JanelaConsultaFx extends Application {
         gerenciador.getMapKit().getMainMap().addMouseListener(mouse);
         gerenciador.getMapKit().getMainMap().addMouseMotionListener(mouse);
         gerenciador.getMapKit().setZoom(6);
-
-        createSwingContent(mapkit);
 
         BorderPane pane = new BorderPane();
         GridPane leftPane = new GridPane();

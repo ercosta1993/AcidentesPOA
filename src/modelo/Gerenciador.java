@@ -167,10 +167,17 @@ public class Gerenciador {
     public ArrayList<Acidente> acidentesPorLocalizacao(GeoPosition geo, long distancia) {
         ArrayList<Acidente> acidentes = new ArrayList<>();
 
+        //public double distaincia(double latInicial, double latFinal, double lngInicial, double lngFinal) {
+        //    double distancia = 6378140 * Math.acos(Math.cos(Math.PI * (90 - latFinal) / 180) * Math.cos((90 - latInicial) * Math.PI / 180)
+        //            + Math.sin((90 - latFinal) * Math.PI / 180) * Math.sin((90 - latInicial) * Math.PI / 180) * Math.cos((lngInicial - lngFinal) * Math.PI / 180));
+        //    return distancia;
+        //}
+        
+        
         return acidentes;
     }
 
-    // Questao 05
+// Questao 05
     public LocalDateTime dataComMaisAcidentes() {
         LocalDateTime dataMaior = null;
 
