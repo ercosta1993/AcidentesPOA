@@ -6,14 +6,19 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.stream.Stream;
 import org.jxmapviewer.viewer.GeoPosition;
 
 public class Gerenciador {
@@ -138,7 +143,7 @@ public class Gerenciador {
     }
 
     // Questao 02 ok
-    public ArrayList<GeoPosition> colacaoAcidentesPorLogDiaSem(String log, Dia_semana dia) {
+    public ArrayList<GeoPosition> colecaoAcidentesPorLogDiaSem(String log, Dia_semana dia) {
         ArrayList<GeoPosition> acidentes = new ArrayList<>();
         lista.stream().filter((acidente) -> ((acidente.getLog1().contains(log)) && (acidente.getDia_sem() == dia))).forEachOrdered((acidente) -> {
             acidentes.add(acidente.getGeo());
@@ -146,15 +151,23 @@ public class Gerenciador {
         return acidentes;
     }
 
-    // Questao 03
-    public ArrayList<GeoPosition> listaAcidentesPorRuaTipo(LocalDateTime inicio, LocalDateTime fim, Tipo_acidente tipo) {
+    // Questao 03 ok
+    public ArrayList<GeoPosition> colecaoAcidentesPorDataTipoAcidente(LocalDateTime dataInicial, LocalDateTime dataFinal, List<Tipo_acidente> tipos) {
         ArrayList<GeoPosition> acidentes = new ArrayList<>();
-
-        
+        LocalDate inicio = dataInicial.toLocalDate();
+        LocalDate fim = dataFinal.toLocalDate();
+        for (LocalDate id = inicio; !id.isAfter(fim); id = id.plusDays(1)) {
+            for (Acidente acidente : lista) {
+                LocalDate data = acidente.getData().toLocalDate();
+                if ((id.equals(data)) && tipos.contains(acidente.getTipo())) {
+                    acidentes.add(acidente.getGeo());
+                }
+            }
+        }
         return acidentes;
     }
 
-// Questao 04
+    // Questao 04
     public ArrayList<Acidente> acidentesPorLocalizacao(GeoPosition geo, long distancia) {
         ArrayList<Acidente> acidentes = new ArrayList<>();
 
